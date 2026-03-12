@@ -47,7 +47,7 @@ main{padding:24px 28px;max-width:1760px;margin:0 auto}
 .gfw{margin-bottom:18px}
 
 /* HERO CARDS */
-.heroes{display:grid;grid-template-columns:repeat(3,1fr);gap:16px;margin-bottom:18px}
+.heroes{display:grid;grid-template-columns:repeat(5,1fr);gap:16px;margin-bottom:18px}
 .hc{background:var(--s0);border:1px solid var(--b1);border-radius:16px;padding:24px 26px;position:relative;overflow:hidden;box-shadow:0 1px 3px rgba(0,0,0,.05)}
 .hc::before{content:'';position:absolute;top:0;left:0;right:0;height:3px;background:var(--hbar,var(--accent))}
 .hc-ey{font-size:10px;font-weight:700;color:var(--tx3);text-transform:uppercase;letter-spacing:.12em;display:flex;align-items:center;gap:7px;margin-bottom:11px}
@@ -57,6 +57,18 @@ main{padding:24px 28px;max-width:1760px;margin:0 auto}
 .hc-foot{display:flex;align-items:center;justify-content:space-between;gap:8px;flex-wrap:wrap}
 .hc-sub{font-size:12px;color:var(--tx3)}
 .hc-badge{font-size:10px;font-weight:700;font-family:'JetBrains Mono',monospace;padding:3px 9px;border-radius:5px;white-space:nowrap;letter-spacing:.03em}
+/* P&L breakdown card */
+.pnl-card{background:var(--s0);border:1px solid var(--b1);border-radius:16px;padding:24px 26px;position:relative;overflow:hidden;box-shadow:0 1px 3px rgba(0,0,0,.05);display:flex;flex-direction:column}
+.pnl-card::before{content:'';position:absolute;top:0;left:0;right:0;height:3px;background:var(--green)}
+.pnl-total-row{display:flex;align-items:flex-start;justify-content:space-between;gap:12px;margin-bottom:16px;padding-bottom:14px;border-bottom:1px solid var(--b1)}
+.pnl-total-label{font-size:10px;font-weight:700;color:var(--tx3);text-transform:uppercase;letter-spacing:.12em;display:flex;align-items:center;gap:7px;margin-bottom:11px}
+.pnl-total-val{font-family:'DM Serif Display',serif;font-size:46px;line-height:1}
+.pnl-items{display:grid;grid-template-columns:repeat(3,1fr);gap:10px}
+.pnl-item{background:var(--s1);border:1px solid var(--b1);border-radius:11px;padding:13px 15px;display:flex;flex-direction:column;gap:4px;position:relative;overflow:hidden}
+.pnl-item::before{content:'';position:absolute;left:0;top:0;bottom:0;width:3px;background:var(--pi-color,var(--accent))}
+.pnl-item-label{font-size:9px;font-weight:700;color:var(--tx3);text-transform:uppercase;letter-spacing:.12em}
+.pnl-item-val{font-family:'JetBrains Mono',monospace;font-size:18px;font-weight:700;line-height:1.1}
+.pnl-item-sub{font-size:10px;color:var(--tx3);margin-top:3px}
 
 /* RENT STRIP */
 .rstrip{display:grid;grid-template-columns:1fr 1fr;gap:16px;margin-bottom:18px}
@@ -165,10 +177,11 @@ tr:last-child td{border-bottom:none}
 /* ── TABLET (≤900px) ── */
 @media(max-width:900px){
   main{padding:14px}
-  .heroes{grid-template-columns:1fr 1fr}
+  .heroes{grid-template-columns:repeat(3,1fr)}
   .rstrip{grid-template-columns:1fr}
   .g2,.g3,.g3b{grid-template-columns:1fr}
   .hc-val{font-size:36px}
+  .pnl-total-val{font-size:36px}
   .rc{flex-direction:column;gap:14px}
   .rc-left{border-right:none;border-bottom:1px solid var(--b1);padding-right:0;padding-bottom:14px;min-width:unset}
   .rc-metrics{grid-template-columns:repeat(4,1fr)}
@@ -176,7 +189,6 @@ tr:last-child td{border-bottom:none}
 
 /* ── MOBILE (≤600px) ── */
 @media(max-width:600px){
-  /* Header: stack tabs below logo row */
   header{height:auto;flex-wrap:wrap;padding:10px 14px;gap:8px}
   .logo{font-size:17px;order:1}
   .sp{display:none}
@@ -186,16 +198,13 @@ tr:last-child td{border-bottom:none}
   .tab{padding:6px 12px;font-size:12px;white-space:nowrap}
   .cfilter{order:2;margin-left:auto}
   .hstat{order:4;width:100%;font-size:10px;justify-content:flex-end}
-
-  /* Main padding */
   main{padding:10px}
-
-  /* Hero cards: full width stack */
-  .heroes{grid-template-columns:1fr}
+  .heroes{grid-template-columns:1fr 1fr}
   .hc{padding:18px 20px}
   .hc-val{font-size:40px}
-
-  /* Rent strip: single column, compact */
+  .pnl-card{padding:18px 20px}
+  .pnl-total-val{font-size:38px}
+  .pnl-items{grid-template-columns:1fr}
   .rstrip{grid-template-columns:1fr}
   .rc{padding:16px 18px;flex-direction:column;gap:12px}
   .rc-left{border-right:none;border-bottom:1px solid var(--b1);padding-right:0;padding-bottom:12px;min-width:unset}
@@ -203,16 +212,10 @@ tr:last-child td{border-bottom:none}
   .rc-metrics{grid-template-columns:repeat(3,1fr);gap:7px}
   .rm{padding:8px 10px}
   .rm-val{font-size:14px}
-
-  /* All grids: single column */
   .g2,.g3,.g3b{grid-template-columns:1fr}
-
-  /* Cards */
-  .ch{padding:12px 14px 10px}
+  .ch{padding:12px 14px 10px;flex-wrap:wrap}
   .cb{padding:12px 14px}
   .ct{font-size:15px}
-
-  /* Tables: horizontal scroll */
   .scroll{overflow-x:auto;-webkit-overflow-scrolling:touch}
   table{min-width:580px}
   th,td{padding:9px 10px;font-size:12px}
@@ -220,38 +223,23 @@ tr:last-child td{border-bottom:none}
   .ico{width:30px;height:30px;font-size:7px;border-radius:7px}
   .tn{font-size:12px}
   .ts{font-size:10px}
-
-  /* Hide less important columns on mobile */
   .hide-m{display:none}
-
-  /* Summary blocks */
   .sg{grid-template-columns:1fr 1fr}
   .sbv{font-size:20px}
-
-  /* Search input */
   .srch{width:100%;margin-top:6px}
-  .ch{flex-wrap:wrap}
-
-  /* Charts: reduce height */
   canvas{max-height:200px}
   #cAum{max-height:180px}
   #cUnr{max-height:140px}
-
-  /* Metrics tab */
   .mt th,.mt td{padding:9px 10px;font-size:11px}
   .rfbanner{font-size:11px;padding:9px 12px}
-
-  /* Donut layout: stack vertically */
   .cb [style*="display:flex"][style*="gap:14px"]{flex-direction:column;align-items:center}
   .dleg{max-height:160px;width:100%}
-
-  /* Exposicion bars */
-  #currBars .bw .bar{height:7px}
 }
 
 /* ── SMALL MOBILE (≤380px) ── */
 @media(max-width:380px){
   .hc-val{font-size:34px}
+  .pnl-total-val{font-size:32px}
   .rc-hpr{font-size:20px}
   .rm-val{font-size:13px}
   .rc-metrics{grid-template-columns:repeat(2,1fr)}
@@ -413,10 +401,10 @@ tr:last-child td{border-bottom:none}
 /* ══ DATOS ══ */
 
 /* ══ DATOS_START ══ */
-const OPEN=[{"t":"EZA","q":3676.0,"w":81.5699,"c":299850.95,"cu":"USD","px":69.37,"pxp":71.05,"val":255004.12,"d":0.0},{"t":"CIB","q":3705.0,"w":80.7436,"c":299155.0,"cu":"USD","px":65.37,"pxp":69.16,"val":242195.85,"d":0.0},{"t":"GLD","q":609.0,"w":489.9299,"c":298367.31,"cu":"USD","px":470.68,"pxp":476.24,"val":286644.12,"d":0.0},{"t":"BAP","q":843.0,"w":295.6388,"c":249223.51,"cu":"USD","px":327.725,"pxp":337.61,"val":276272.18,"d":0.0},{"t":"EEM","q":4425.0,"w":54.1242,"c":239499.39,"cu":"USD","px":57.155,"pxp":58.83,"val":252910.88,"d":3377.43},{"t":"MINSURI1","q":153985.0,"w":5.2049,"c":801482.4,"cu":"PEN","px":6.4,"pxp":6.56,"val":985504.0,"d":33975.15},{"t":"AUNA","q":38890.0,"w":5.2535,"c":204307.95,"cu":"USD","px":4.917,"pxp":5.2,"val":191222.13,"d":0.0},{"t":"EWY","q":1327.0,"w":150.5805,"c":199820.26,"cu":"USD","px":125.4701,"pxp":132.85,"val":166498.82,"d":0.0},{"t":"COLO","q":5108.0,"w":39.118,"c":199814.76,"cu":"USD","px":38.18,"pxp":38.71,"val":195023.44,"d":0.0},{"t":"EWW","q":2484.0,"w":80.4199,"c":199763.03,"cu":"USD","px":72.39,"pxp":74.69,"val":179816.76,"d":0.0},{"t":"AMZN","q":978.0,"w":204.15,"c":199658.7,"cu":"USD","px":209.32,"pxp":212.65,"val":204714.96,"d":0.0},{"t":"EPU","q":2369.0,"w":83.8978,"c":198753.77,"cu":"USD","px":82.78,"pxp":84.67,"val":196105.82,"d":0.0},{"t":"EWZ","q":5124.0,"w":36.6,"c":187538.4,"cu":"USD","px":36.305,"pxp":37.61,"val":186026.82,"d":0.0},{"t":"TCHI","q":7312.0,"w":24.8914,"c":182005.6,"cu":"USD","px":22.7,"pxp":23.011,"val":165982.4,"d":2423.96},{"t":"XLU","q":4123.0,"w":43.582,"c":179688.62,"cu":"USD","px":46.935,"pxp":46.17,"val":193513.01,"d":1483.09},{"t":"EZU","q":2391.0,"w":62.629,"c":149745.94,"cu":"USD","px":62.86,"pxp":64.04,"val":150298.26,"d":1458.65},{"t":"CQQQ","q":2722.0,"w":55.0034,"c":149719.37,"cu":"USD","px":49.43,"pxp":50.25,"val":134548.46,"d":764.66},{"t":"UNH","q":437.0,"w":342.351,"c":149607.39,"cu":"USD","px":278.635,"pxp":285.25,"val":121763.49,"d":965.77},{"t":"MSFT","q":369.0,"w":405.2379,"c":149532.79,"cu":"USD","px":402.81,"pxp":404.88,"val":148636.89,"d":0.0},{"t":"EC","q":12482.0,"w":11.9679,"c":149383.3,"cu":"USD","px":13.7699,"pxp":13.56,"val":171875.89,"d":0.0},{"t":"SMH","q":357.0,"w":416.96,"c":148854.72,"cu":"USD","px":389.76,"pxp":401.03,"val":139144.32,"d":0.0},{"t":"EUFN","q":4135.0,"w":33.7943,"c":139739.28,"cu":"USD","px":34.1,"pxp":35.21,"val":141003.5,"d":2132.17},{"t":"VOLCABC1","q":639144.0,"w":0.7853,"c":501906.64,"cu":"PEN","px":0.73,"pxp":0.75,"val":466575.12,"d":0.0},{"t":"XLI","q":810.0,"w":160.2548,"c":129806.4,"cu":"USD","px":166.395,"pxp":169.49,"val":134779.95,"d":610.9},{"t":"BIDU","q":1031.0,"w":125.866,"c":129767.85,"cu":"USD","px":122.575,"pxp":125.15,"val":126374.82,"d":0.0},{"t":"XLY","q":1104.0,"w":117.4766,"c":129694.13,"cu":"USD","px":112.07,"pxp":114.14,"val":123725.28,"d":408.43},{"t":"NIO","q":18368.0,"w":5.6903,"c":104519.95,"cu":"USD","px":5.65,"pxp":5.47,"val":103779.2,"d":0.0},{"t":"BVN","q":2640.0,"w":37.9512,"c":100191.08,"cu":"USD","px":36.78,"pxp":38.4,"val":97099.2,"d":666.9},{"t":"NFLX","q":1187.0,"w":84.28,"c":100040.36,"cu":"USD","px":93.87,"pxp":94.89,"val":111423.69,"d":0.0},{"t":"EWL","q":1645.0,"w":60.702,"c":99854.79,"cu":"USD","px":59.225,"pxp":60.09,"val":97425.12,"d":0.0},{"t":"YINN","q":2590.0,"w":38.425,"c":99520.75,"cu":"USD","px":34.2,"pxp":34.81,"val":88578.0,"d":0.0},{"t":"QQQ","q":167.0,"w":595.83,"c":99503.61,"cu":"USD","px":598.365,"pxp":607.69,"val":99926.96,"d":0.0},{"t":"FERREYC1","q":103492.0,"w":3.3176,"c":343347.3,"cu":"PEN","px":4.1,"pxp":4.1,"val":424317.2,"d":10939.21},{"t":"KMB","q":802.0,"w":114.2149,"c":91600.34,"cu":"USD","px":99.3,"pxp":100.04,"val":79638.6,"d":506.52},{"t":"PFE","q":3195.0,"w":25.0296,"c":79969.58,"cu":"USD","px":26.745,"pxp":27.3,"val":85450.28,"d":1373.85},{"t":"ICLN","q":4702.0,"w":16.9899,"c":79886.51,"cu":"USD","px":18.48,"pxp":18.51,"val":86892.96,"d":602.8},{"t":"DIS","q":752.0,"w":106.14,"c":79817.28,"cu":"USD","px":99.67,"pxp":100.89,"val":74951.84,"d":564.0},{"t":"TTWO","q":330.0,"w":241.52,"c":79701.6,"cu":"USD","px":208.18,"pxp":211.09,"val":68699.4,"d":0.0},{"t":"TAN","q":1019.0,"w":49.0,"c":49931.0,"cu":"USD","px":54.78,"pxp":55.73,"val":55820.82,"d":0.0},{"t":"PRU","q":483.0,"w":103.3625,"c":49924.09,"cu":"USD","px":93.355,"pxp":94.94,"val":45090.47,"d":652.05},{"t":"KKR","q":341.0,"w":146.35,"c":49905.35,"cu":"USD","px":82.69,"pxp":87.13,"val":28197.29,"d":63.09},{"t":"FDX","q":218.0,"w":228.4,"c":49791.2,"cu":"USD","px":356.57,"pxp":361.39,"val":77732.26,"d":316.1},{"t":"SIDERC1","q":74649.0,"w":1.8605,"c":138882.24,"cu":"PEN","px":2.47,"pxp":2.5,"val":184383.03,"d":0.0},{"t":"JDOC","q":2352.0,"w":58.2219,"c":136937.91,"cu":"PEN","px":56.8059,"pxp":57.0917,"val":133607.48,"d":768.15},{"t":"INRETC1","q":5100.0,"w":26.4324,"c":134805.0,"cu":"PEN","px":28.0,"pxp":28.3,"val":142800.0,"d":0.0},{"t":"ORYGENC1","q":48829.0,"w":2.4092,"c":117639.6,"cu":"PEN","px":3.02,"pxp":3.03,"val":147463.58,"d":5414.75},{"t":"CPACASC1","q":15000.0,"w":6.92,"c":103800.0,"cu":"PEN","px":7.0,"pxp":6.98,"val":105000.0,"d":0.0},{"t":"JAVA","q":1000.0,"w":72.66,"c":72660.0,"cu":"PEN","px":72.67,"pxp":72.95,"val":72670.0,"d":295.9}];
-const CLOSED=[{"t":"ITUB","q":5705.0,"w":6.9883,"pv":8.0701,"cu":"USD","pnl":6171.67,"pnl_pct":0.1548},{"t":"PLTR","q":5721.0,"w":155.2155,"pv":162.6904,"cu":"USD","pnl":42763.93,"pnl_pct":0.0482},{"t":"SPY","q":316.0,"w":661.3636,"pv":685.7918,"cu":"USD","pnl":7719.29,"pnl_pct":0.0369},{"t":"XPEV","q":2500.0,"w":21.9574,"pv":27.74,"cu":"USD","pnl":14456.57,"pnl_pct":0.2634},{"t":"EWP","q":1031.0,"w":48.4071,"pv":55.0301,"cu":"USD","pnl":6828.32,"pnl_pct":0.1368},{"t":"EWZ","q":16212.0,"w":35.0388,"pv":36.9598,"cu":"USD","pnl":31143.23,"pnl_pct":0.0548},{"t":"EWZS","q":6688.0,"w":13.4116,"pv":13.713,"cu":"USD","pnl":2015.9,"pnl_pct":0.0225},{"t":"BVN","q":4612.0,"w":22.8101,"pv":25.1113,"cu":"USD","pnl":10613.1,"pnl_pct":0.1009},{"t":"VOLCABC1","q":367490.0,"w":0.4647,"pv":0.5837,"cu":"PEN","pnl":43711.25,"pnl_pct":0.2559},{"t":"EWQ","q":1839.0,"w":43.48,"pv":45.96,"cu":"USD","pnl":4560.78,"pnl_pct":0.057},{"t":"QQQ","q":491.0,"w":609.054,"pv":621.2633,"cu":"USD","pnl":5994.77,"pnl_pct":0.02},{"t":"TQQQ","q":13145.0,"w":49.3154,"pv":50.2292,"cu":"USD","pnl":12011.54,"pnl_pct":0.0185},{"t":"SMH","q":264.0,"w":377.5699,"pv":425.0626,"cu":"USD","pnl":12538.07,"pnl_pct":0.1258},{"t":"KORU","q":925.0,"w":366.0104,"pv":394.7628,"cu":"USD","pnl":26595.97,"pnl_pct":0.0786}];
+const OPEN=[{"t":"EZA","q":3676.0,"w":81.5699,"c":299850.95,"cu":"USD","px":69.1101,"pxp":71.05,"val":254048.73,"d":0.0},{"t":"CIB","q":3705.0,"w":80.7436,"c":299155.0,"cu":"USD","px":66.36,"pxp":69.16,"val":245863.8,"d":0.0},{"t":"GLD","q":609.0,"w":489.9299,"c":298367.31,"cu":"USD","px":467.6325,"pxp":476.24,"val":284788.19,"d":0.0},{"t":"BAP","q":843.0,"w":295.6388,"c":249223.51,"cu":"USD","px":327.93,"pxp":337.61,"val":276444.99,"d":0.0},{"t":"EEM","q":4425.0,"w":54.1242,"c":239499.39,"cu":"USD","px":57.115,"pxp":58.83,"val":252733.88,"d":3377.43},{"t":"MINSURI1","q":153985.0,"w":5.2049,"c":801482.4,"cu":"PEN","px":6.4,"pxp":6.56,"val":985504.0,"d":33975.15},{"t":"AUNA","q":38890.0,"w":5.2535,"c":204307.95,"cu":"USD","px":4.925,"pxp":5.2,"val":191533.25,"d":0.0},{"t":"EWY","q":1327.0,"w":150.5805,"c":199820.26,"cu":"USD","px":124.63,"pxp":132.85,"val":165384.01,"d":0.0},{"t":"COLO","q":5108.0,"w":39.118,"c":199814.76,"cu":"USD","px":38.28,"pxp":38.71,"val":195534.24,"d":0.0},{"t":"EWW","q":2484.0,"w":80.4199,"c":199763.03,"cu":"USD","px":72.43,"pxp":74.69,"val":179916.12,"d":0.0},{"t":"AMZN","q":978.0,"w":204.15,"c":199658.7,"cu":"USD","px":209.95,"pxp":212.65,"val":205331.1,"d":0.0},{"t":"EPU","q":2369.0,"w":83.8978,"c":198753.77,"cu":"USD","px":82.68,"pxp":84.67,"val":195868.92,"d":0.0},{"t":"EWZ","q":5124.0,"w":36.6,"c":187538.4,"cu":"USD","px":36.1345,"pxp":37.61,"val":185153.18,"d":0.0},{"t":"TCHI","q":7312.0,"w":24.8914,"c":182005.6,"cu":"USD","px":22.75,"pxp":23.011,"val":166348.0,"d":2423.96},{"t":"XLU","q":4123.0,"w":43.582,"c":179688.62,"cu":"USD","px":46.625,"pxp":46.17,"val":192234.88,"d":1483.09},{"t":"EZU","q":2391.0,"w":62.629,"c":149745.94,"cu":"USD","px":63.1,"pxp":64.04,"val":150872.1,"d":1458.65},{"t":"CQQQ","q":2722.0,"w":55.0034,"c":149719.37,"cu":"USD","px":49.34,"pxp":50.25,"val":134303.48,"d":764.66},{"t":"UNH","q":437.0,"w":342.351,"c":149607.39,"cu":"USD","px":277.785,"pxp":285.25,"val":121392.05,"d":965.77},{"t":"MSFT","q":369.0,"w":405.2379,"c":149532.79,"cu":"USD","px":403.04,"pxp":404.88,"val":148721.76,"d":0.0},{"t":"EC","q":12482.0,"w":11.9679,"c":149383.3,"cu":"USD","px":13.975,"pxp":13.56,"val":174435.95,"d":0.0},{"t":"SMH","q":357.0,"w":416.96,"c":148854.72,"cu":"USD","px":388.345,"pxp":401.03,"val":138639.17,"d":0.0},{"t":"EUFN","q":4135.0,"w":33.7943,"c":139739.28,"cu":"USD","px":34.245,"pxp":35.21,"val":141603.07,"d":2132.17},{"t":"VOLCABC1","q":639144.0,"w":0.7853,"c":501906.64,"cu":"PEN","px":0.73,"pxp":0.75,"val":466575.12,"d":0.0},{"t":"XLI","q":810.0,"w":160.2548,"c":129806.4,"cu":"USD","px":165.59,"pxp":169.49,"val":134127.9,"d":610.9},{"t":"BIDU","q":1031.0,"w":125.866,"c":129767.85,"cu":"USD","px":122.84,"pxp":125.15,"val":126648.04,"d":0.0},{"t":"XLY","q":1104.0,"w":117.4766,"c":129694.13,"cu":"USD","px":111.82,"pxp":114.14,"val":123449.28,"d":408.43},{"t":"NIO","q":18368.0,"w":5.6903,"c":104519.95,"cu":"USD","px":5.555,"pxp":5.47,"val":102034.24,"d":0.0},{"t":"BVN","q":2640.0,"w":37.9512,"c":100191.08,"cu":"USD","px":36.94,"pxp":38.4,"val":97521.6,"d":666.9},{"t":"NFLX","q":1187.0,"w":84.28,"c":100040.36,"cu":"USD","px":94.59,"pxp":94.89,"val":112278.33,"d":0.0},{"t":"EWL","q":1645.0,"w":60.702,"c":99854.79,"cu":"USD","px":59.435,"pxp":60.09,"val":97770.57,"d":0.0},{"t":"YINN","q":2590.0,"w":38.425,"c":99520.75,"cu":"USD","px":34.21,"pxp":34.81,"val":88603.9,"d":0.0},{"t":"QQQ","q":167.0,"w":595.83,"c":99503.61,"cu":"USD","px":597.9061,"pxp":607.69,"val":99850.32,"d":0.0},{"t":"FERREYC1","q":103492.0,"w":3.3176,"c":343347.3,"cu":"PEN","px":4.1,"pxp":4.1,"val":424317.2,"d":10939.21},{"t":"KMB","q":802.0,"w":114.2149,"c":91600.34,"cu":"USD","px":98.065,"pxp":100.04,"val":78648.13,"d":506.52},{"t":"PFE","q":3195.0,"w":25.0296,"c":79969.58,"cu":"USD","px":26.973,"pxp":27.3,"val":86178.74,"d":1373.85},{"t":"ICLN","q":4702.0,"w":16.9899,"c":79886.51,"cu":"USD","px":18.415,"pxp":18.51,"val":86587.33,"d":602.8},{"t":"DIS","q":752.0,"w":106.14,"c":79817.28,"cu":"USD","px":99.68,"pxp":100.89,"val":74959.36,"d":564.0},{"t":"TTWO","q":330.0,"w":241.52,"c":79701.6,"cu":"USD","px":209.29,"pxp":211.09,"val":69065.7,"d":0.0},{"t":"TAN","q":1019.0,"w":49.0,"c":49931.0,"cu":"USD","px":54.9,"pxp":55.73,"val":55943.1,"d":0.0},{"t":"PRU","q":483.0,"w":103.3625,"c":49924.09,"cu":"USD","px":92.52,"pxp":94.94,"val":44687.16,"d":652.05},{"t":"KKR","q":341.0,"w":146.35,"c":49905.35,"cu":"USD","px":83.78,"pxp":87.13,"val":28568.98,"d":63.09},{"t":"FDX","q":218.0,"w":228.4,"c":49791.2,"cu":"USD","px":353.85,"pxp":361.39,"val":77139.3,"d":316.1},{"t":"SIDERC1","q":74649.0,"w":1.8605,"c":138882.24,"cu":"PEN","px":2.47,"pxp":2.5,"val":184383.03,"d":0.0},{"t":"JDOC","q":2352.0,"w":58.2219,"c":136937.91,"cu":"PEN","px":56.8059,"pxp":57.0917,"val":133607.48,"d":768.15},{"t":"INRETC1","q":5100.0,"w":26.4324,"c":134805.0,"cu":"PEN","px":28.0,"pxp":28.3,"val":142800.0,"d":0.0},{"t":"ORYGENC1","q":48829.0,"w":2.4092,"c":117639.6,"cu":"PEN","px":3.02,"pxp":3.03,"val":147463.58,"d":5414.75},{"t":"CPACASC1","q":15000.0,"w":6.92,"c":103800.0,"cu":"PEN","px":7.0,"pxp":6.98,"val":105000.0,"d":0.0},{"t":"JAVA","q":1000.0,"w":72.66,"c":72660.0,"cu":"PEN","px":72.67,"pxp":72.95,"val":72670.0,"d":295.9}];
+const CLOSED=[{"t":"XPEV","q":2500.0,"w":21.9574,"pv":27.74,"cu":"USD","pnl":14456.57,"pnl_pct":0.2634},{"t":"ITUB","q":5705.0,"w":6.9883,"pv":8.0701,"cu":"USD","pnl":6171.67,"pnl_pct":0.1548},{"t":"EWP","q":1031.0,"w":48.4071,"pv":55.0301,"cu":"USD","pnl":6828.32,"pnl_pct":0.1368},{"t":"KORU","q":925.0,"w":366.0104,"pv":394.7628,"cu":"USD","pnl":26595.97,"pnl_pct":0.0786},{"t":"EWQ","q":1839.0,"w":43.48,"pv":45.96,"cu":"USD","pnl":4560.78,"pnl_pct":0.057},{"t":"PLTR","q":5721.0,"w":155.2155,"pv":162.6904,"cu":"USD","pnl":42763.93,"pnl_pct":0.0482},{"t":"BVN","q":4612.0,"w":22.8101,"pv":25.1113,"cu":"USD","pnl":10613.1,"pnl_pct":0.1009},{"t":"SPY","q":316.0,"w":661.3636,"pv":685.7918,"cu":"USD","pnl":7719.29,"pnl_pct":0.0369},{"t":"EWZ","q":16212.0,"w":35.0388,"pv":36.9598,"cu":"USD","pnl":31143.23,"pnl_pct":0.0548},{"t":"EWZS","q":6688.0,"w":13.4116,"pv":13.713,"cu":"USD","pnl":2015.9,"pnl_pct":0.0225},{"t":"TQQQ","q":13145.0,"w":49.3154,"pv":50.2292,"cu":"USD","pnl":12011.54,"pnl_pct":0.0185},{"t":"QQQ","q":491.0,"w":609.054,"pv":621.2633,"cu":"USD","pnl":5994.77,"pnl_pct":0.02},{"t":"SMH","q":264.0,"w":377.5699,"pv":425.0626,"cu":"USD","pnl":12538.07,"pnl_pct":0.1258},{"t":"VOLCABC1","q":367490.0,"w":0.4647,"pv":0.5837,"cu":"PEN","pnl":43711.25,"pnl_pct":0.2559}];
 const DIVS=[{"fecha":"2026-02-18","t":"ORYGENC1","m":5414.75,"cu":"PEN"},{"fecha":"2026-01-16","t":"FERREYC1","m":10939.21,"cu":"PEN"},{"fecha":"2026-01-16","t":"KMB","m":506.52,"cu":"USD"},{"fecha":"2026-01-05","t":"FDX","m":316.1,"cu":"USD"},{"fecha":"2026-01-05","t":"ITUB","m":18.43,"cu":"USD"},{"fecha":"2026-01-05","t":"DIS","m":564.0,"cu":"USD"},{"fecha":"2025-12-26","t":"CQQQ","m":764.66,"cu":"USD"},{"fecha":"2025-12-24","t":"XLY","m":265.89,"cu":"USD"},{"fecha":"2025-12-24","t":"XLI","m":279.62,"cu":"USD"},{"fecha":"2025-12-24","t":"XLU","m":951.63,"cu":"USD"},{"fecha":"2025-12-23","t":"EZU","m":1458.65,"cu":"USD"},{"fecha":"2025-12-23","t":"EWQ","m":419.44,"cu":"USD"},{"fecha":"2025-12-23","t":"EWP","m":763.32,"cu":"USD"},{"fecha":"2025-12-23","t":"ICLN","m":602.8,"cu":"USD"},{"fecha":"2025-12-23","t":"EUFN","m":2132.17,"cu":"USD"},{"fecha":"2025-12-23","t":"TCHI","m":2423.96,"cu":"USD"},{"fecha":"2025-12-23","t":"EEM","m":3377.43,"cu":"USD"},{"fecha":"2025-12-18","t":"JAVA","m":295.9,"cu":"PEN"},{"fecha":"2025-12-18","t":"JDOC","m":768.15,"cu":"PEN"},{"fecha":"2025-12-18","t":"UNH","m":965.77,"cu":"USD"},{"fecha":"2025-12-17","t":"BVN","m":377.7,"cu":"USD"},{"fecha":"2025-12-17","t":"BVN","m":289.2,"cu":"USD"},{"fecha":"2025-12-16","t":"MINSURI1","m":33975.15,"cu":"PEN"},{"fecha":"2025-12-12","t":"PRU","m":652.05,"cu":"USD"},{"fecha":"2025-12-12","t":"ITUB","m":18.77,"cu":"USD"},{"fecha":"2025-12-02","t":"KKR","m":63.09,"cu":"USD"},{"fecha":"2025-12-01","t":"PFE","m":1373.85,"cu":"USD"},{"fecha":"2025-11-11","t":"ITUB","m":18.66,"cu":"USD"},{"fecha":"2025-09-30","t":"XLI","m":331.27,"cu":"USD"},{"fecha":"2025-09-30","t":"XLU","m":531.46,"cu":"USD"},{"fecha":"2025-09-24","t":"XLY","m":142.54,"cu":"USD"}];
-const KPIS_DATA={"nav_total":6300466,"nav_usd":5584788,"nav_pen":2662320,"cost_total":6409569,"unrealized":-109103,"unrealized_pct":-0.017,"realized":195163,"realized_usd":183413,"realized_pen":43711,"dividends":33424,"divs_usd":19609,"divs_pen":51393,"total_pnl":119485,"pnl1d":-131062};
+const KPIS_DATA={"nav_total":6300890,"nav_usd":5585213,"nav_pen":2662320,"cost_total":6409569,"unrealized":-108679,"unrealized_pct":-0.017,"realized":195163,"realized_usd":183413,"realized_pen":43711,"dividends":33424,"divs_usd":19609,"divs_pen":51393,"total_pnl":119909,"pnl1d":-130637};
 const PRICES={"FDX":361.39,"MINSURI1":6.4,"SIDERC1":2.47,"ORYGENC1":3.02,"XPEV":19.29,"FERREYC1":4.1,"TAN":55.73,"ITUB":8.45,"EWP":54.07,"EEM":58.83,"BAP":337.61,"EUFN":35.21,"EWZ":37.61,"ICLN":18.51,"PFE":27.3,"BVN":38.4,"XLI":169.49,"EZU":64.04,"BIDU":125.15,"XLU":46.17,"PLTR":151.6,"EWL":60.09,"EWQ":44.2,"SMH":401.03,"VOLCABC1":0.73,"INRETC1":28.0,"JAVA":72.67,"SPY":676.33,"CPACASC1":7.0,"JDOC":56.805901,"EWZS":14.66,"QQQ":607.69,"PRU":94.94,"DIS":100.89,"XLY":114.14,"AMZN":212.65,"TQQQ":49.35,"TCHI":23.011,"CQQQ":50.25,"AUNA":5.2,"KMB":100.04,"CIB":69.16,"NFLX":94.89,"NIO":5.47,"UNH":285.25,"TTWO":211.09,"KKR":87.13};
 const PRICES_PREV={"FDX":359.47,"MINSURI1":6.56,"SIDERC1":2.5,"ORYGENC1":3.03,"XPEV":18.87,"FERREYC1":4.1,"TAN":54.9,"ITUB":8.48,"EWP":54.0,"EEM":58.68,"BAP":341.28,"EUFN":35.24,"EWZ":37.53,"ICLN":18.25,"PFE":27.16,"BVN":38.9,"XLI":170.02,"EZU":64.04,"BIDU":125.5,"XLU":46.56,"PLTR":151.14,"EWL":60.24,"EWQ":44.08,"SMH":397.33,"VOLCABC1":0.75,"INRETC1":28.3,"JAVA":72.95,"SPY":677.18,"CPACASC1":6.98,"JDOC":57.0917,"EWZS":14.7,"QQQ":607.77,"PRU":95.47,"DIS":101.32,"XLY":114.44,"AMZN":214.33,"TQQQ":49.4,"TCHI":23.085,"CQQQ":50.94,"AUNA":4.8,"KMB":101.71,"CIB":70.21,"NFLX":96.94,"NIO":5.7,"UNH":282.34,"TTWO":209.08,"KKR":89.96};
 const LAST_UPDATED="11 Mar 2026";
@@ -483,37 +471,56 @@ function buildResumen(){
   // NAV
   const navV=CUR==='PEN'?`S/${(K.nav_pen/1e6).toFixed(2)}M`:CUR==='USD'?`$${(K.nav_usd/1e6).toFixed(2)}M`:`$${(K.nav_total/1e6).toFixed(2)}M`;
   const navS=CUR==='PEN'?`${(K.nav_pen/K.nav_total/PEN_RATE*100).toFixed(0)}% del total`:CUR==='USD'?`${(K.nav_usd/K.nav_total*100).toFixed(0)}% del total`:`${(K.nav_usd/1e6).toFixed(2)}M USD + S/${(K.nav_pen/1e6).toFixed(2)}M PEN`;
-  // Unr
+  // P&L components
   const unrU=OPEN.reduce((s,p)=>{const x=pnlU(p);return s+(x||0);},0);
   const costU=OPEN.reduce((s,p)=>s+toU(p),0);
-  const unrC=unrU>=0?'var(--green)':'var(--red)';
+  const unrPct=(unrU/costU*100);
   const unrV=CUR==='PEN'?fS(OPEN.filter(p=>p.cu==='PEN').reduce((s,p)=>s+(getPnL(p)||0),0)):CUR==='USD'?fU(OPEN.filter(p=>p.cu==='USD').reduce((s,p)=>s+(getPnL(p)||0),0)):fU(unrU);
-  const unrPct=(unrU/costU*100).toFixed(1);
-  // Rlz
-  const rU=K.realized_usd; const rP=K.realized_pen;
-  const rlzV=CUR==='PEN'?fS(rP):CUR==='USD'?fU(rU):fU(K.realized);
-  // Hero 1: AUM
+  const rlzU=K.realized; const rlzPct=(rlzU/costU*100);
+  const rlzV=CUR==='PEN'?fS(K.realized_pen):CUR==='USD'?fU(K.realized_usd):fU(rlzU);
+  const divU=K.dividends; const divPct=(divU/costU*100);
+  const divV=CUR==='PEN'?fS(K.divs_pen):CUR==='USD'?fU(K.divs_usd):fU(divU);
+  const totalPnl=unrU+rlzU+divU; const totalPct=(totalPnl/costU*100);
+  const unrC=unrU>=0?'var(--green)':'var(--red)';
+  const rlzC=rlzU>=0?'var(--green)':'var(--red)';
+  const unrSign=unrU>=0?'+':''; const rlzSign=rlzU>=0?'+':'';
+  const totalC=totalPnl>=0?'var(--green)':'var(--red)'; const totalSign=totalPnl>=0?'+':'';
+  // Hero cards: AUM + 4 P&L components
   document.getElementById('heroRow').innerHTML=`
     <div class="hc" style="--hbar:var(--accent)">
       <div class="hc-ey"><div class="hc-dot"></div>AUM · Valor de Mercado</div>
       <div class="hc-val">${navV}</div>
       <div class="hc-div"></div>
       <div class="hc-foot"><span class="hc-sub">${navS}</span>
-        <span class="hc-badge" style="background:var(--accL);color:var(--accent)">10 Mar 2026</span></div>
+        <span class="hc-badge" style="background:var(--accL);color:var(--accent)">${LAST_UPDATED}</span></div>
+    </div>
+    <div class="hc" style="--hbar:${totalC}">
+      <div class="hc-ey"><div class="hc-dot" style="background:${totalC}"></div>P&amp;L Total</div>
+      <div class="hc-val" style="color:${totalC}">${totalSign}${fU(Math.abs(totalPnl))}</div>
+      <div class="hc-div"></div>
+      <div class="hc-foot"><span class="hc-sub">No real. + Realiz. + Divs.</span>
+        <span class="hc-badge" style="background:${totalPnl>=0?'var(--greenL)':'var(--redL)'};color:${totalC}">${totalSign}${totalPct.toFixed(1)}%</span></div>
     </div>
     <div class="hc" style="--hbar:${unrC}">
-      <div class="hc-ey"><div class="hc-dot" style="background:${unrC}"></div>P&L No Realizado</div>
+      <div class="hc-ey"><div class="hc-dot" style="background:${unrC}"></div>P&amp;L No Realizado</div>
       <div class="hc-val" style="color:${unrC}">${unrV}</div>
       <div class="hc-div"></div>
       <div class="hc-foot"><span class="hc-sub">vs. costo base FIFO</span>
-        <span class="hc-badge" style="background:${unrU>=0?'var(--greenL)':'var(--redL)'};color:${unrC}">${unrU>=0?'+':''}${unrPct}%</span></div>
+        <span class="hc-badge" style="background:${unrU>=0?'var(--greenL)':'var(--redL)'};color:${unrC}">${unrSign}${unrPct.toFixed(1)}%</span></div>
     </div>
-    <div class="hc" style="--hbar:var(--green)">
-      <div class="hc-ey"><div class="hc-dot" style="background:var(--green)"></div>P&L Confirmado</div>
-      <div class="hc-val" style="color:var(--green)">${rlzV}</div>
+    <div class="hc" style="--hbar:${rlzC}">
+      <div class="hc-ey"><div class="hc-dot" style="background:${rlzC}"></div>P&amp;L Realizado</div>
+      <div class="hc-val" style="color:${rlzC}">${rlzSign}${rlzV}</div>
       <div class="hc-div"></div>
-      <div class="hc-foot"><span class="hc-sub">Realizado + Dividendos</span>
-        <span class="hc-badge" style="background:var(--amberL);color:var(--amber)">+$${fN(K.dividends)} div.</span></div>
+      <div class="hc-foot"><span class="hc-sub">Posiciones cerradas</span>
+        <span class="hc-badge" style="background:${rlzU>=0?'var(--greenL)':'var(--redL)'};color:${rlzC}">${rlzSign}${rlzPct.toFixed(1)}%</span></div>
+    </div>
+    <div class="hc" style="--hbar:var(--amber)">
+      <div class="hc-ey"><div class="hc-dot" style="background:var(--amber)"></div>Dividendos</div>
+      <div class="hc-val" style="color:var(--amber)">+${divV}</div>
+      <div class="hc-div"></div>
+      <div class="hc-foot"><span class="hc-sub">Cobrados acumulados</span>
+        <span class="hc-badge" style="background:var(--amberL);color:var(--amber)">+${divPct.toFixed(1)}% yield</span></div>
     </div>`;
 
   const M=CFA.metrics_usd; const MP=CFA.metrics_pen;
