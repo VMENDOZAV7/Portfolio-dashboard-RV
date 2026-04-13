@@ -264,7 +264,7 @@ tr:last-child td{border-bottom:none}
     <button class="cf"    onclick="setCur('USD',this)">USD</button>
     <button class="cf"    onclick="setCur('PEN',this)">PEN</button>
   </div>
-  <div class="hstat"><div class="hstat-dot"></div><span>Precios al 10 Mar 2026</span></div>
+  <div class="hstat"><div class="hstat-dot"></div><span id="hstat-fecha">Precios al …</span></div>
 </header>
 
 <main>
@@ -556,7 +556,7 @@ function buildResumen(){
           <div class="rc-ey">USD · vs ACWI</div>
           <div class="rc-name">Renta Variable Internacional</div>
           <div class="rc-hpr" style="color:${gc(M.hpr_p)}">${fp(M.hpr_p)}</div>
-          <div class="rc-period">HPR Sep 2025 – Mar 2026</div>
+          <div class="rc-period">${HPR_PERIOD}</div>
         </div>
         <div class="rc-ann">
           <span class="rc-annlbl">Anualizado</span>
@@ -578,7 +578,7 @@ function buildResumen(){
           <div class="rc-ey">PEN · vs EPU</div>
           <div class="rc-name">Renta Variable BVL</div>
           <div class="rc-hpr" style="color:${gc(MP.hpr_p)}">${fp(MP.hpr_p)}</div>
-          <div class="rc-period">HPR Sep 2025 – Mar 2026</div>
+          <div class="rc-period">${HPR_PERIOD}</div>
         </div>
         <div class="rc-ann">
           <span class="rc-annlbl">Anualizado</span>
@@ -758,7 +758,7 @@ function renderMetrics(mode='usd'){
   const gc=(v,t=0)=>v==null?'var(--tx2)':v>=t?'var(--green)':'var(--red)';
   const rows=[
     {sec:'Retorno del Período'},
-    {l:'HPR (Holding Period Return)',p:fp(M.hpr_p),b:fp(M.hpr_b),cp:M.hpr_p,cb:M.hpr_b,note:'Retorno total acumulado Sep 2025 – Mar 2026'},
+    {l:'HPR (Holding Period Return)',p:fp(M.hpr_p),b:fp(M.hpr_b),cp:M.hpr_p,cb:M.hpr_b,note:`Retorno total acumulado ${HPR_PERIOD}`},
     {l:'Retorno Anualizado',p:fp(M.ann_p),b:fp(M.ann_b),cp:M.ann_p,cb:M.ann_b,note:'Geométrico: (1+HPR)^(12/n) – 1'},
     {l:'Volatilidad Anual',p:fp(M.vol_p,false),b:fp(M.vol_b,false),cp:null,note:'Desv. estándar mensual × √12'},
     {sec:'Ratios de Riesgo-Retorno'},
@@ -807,7 +807,17 @@ function setCur(c,btn){
   if(active==='dividendos') buildDivs();
 }
 const _built={};
+// HPR_PERIOD: rango dinámico desde primer al último mes del NAV
+const HPR_PERIOD = (() => {
+  const mn = CFA.months_nav;
+  if (!mn || mn.length < 2) return '';
+  return `HPR ${mn[0]} – ${mn[mn.length-1]}`;
+})();
+
 window.addEventListener('DOMContentLoaded',()=>{
+  // Fecha actualización en header
+  const el = document.getElementById('hstat-fecha');
+  if (el) el.textContent = 'Precios al ' + LAST_UPDATED;
   buildKPIs(); buildResumen(); _built['resumen']=true;
 });
 </script>
